@@ -1,6 +1,8 @@
 module.exports = function (grunt) {
     // Project configuration.
+    
     grunt.initConfig({
+        pkg     : grunt.file.readJSON( 'package.json' ),
         gitclone: {
             clone: {
                 options: {
@@ -9,12 +11,23 @@ module.exports = function (grunt) {
                     directory: 'uix'
                 }
             }
-        }
+        },
+        shell: {
+            install: {
+                command: 'npm install --prefix ./uix'
+            },
+            build: {
+                command: "grunt --slug=<%= pkg.namespace %> --base ./uix --gruntfile ./uix/GruntFile.js default"
+            }
+        }        
     });
 
     //load modules
+    grunt.loadNpmTasks( 'grunt-shell');
     grunt.loadNpmTasks( 'grunt-git' );
+
     //register default task
-    grunt.registerTask( 'default', [ 'gitclone' ] );
+    grunt.registerTask( 'default', [ 'gitclone', 'shell:install', 'shell:build' ] );
+    grunt.registerTask( 'build', [ 'shell:install', 'shell:build' ] );
 
 };
