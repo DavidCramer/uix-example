@@ -27,7 +27,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks( 'grunt-git' );
 
     //register default task
-    grunt.registerTask( 'default', [ 'gitclone', 'shell:install', 'shell:build' ] );
-    grunt.registerTask( 'build', [ 'shell:install', 'shell:build' ] );
+    grunt.registerTask( 'uix', [ 'gitclone', 'shell:install', 'shell:build' ] );
 
 };
