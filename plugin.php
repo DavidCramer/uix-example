@@ -38,5 +38,5 @@ function uix_bootstrap(){
 	$pages = include UIX_EX_PATH . 'templates/pages.php';
 
 	// initialize admin UI
-	\plugin_slug\ui\uix::get_instance( $pages );
+	\myplugin\ui\uix::get_instance( $pages );
 }
